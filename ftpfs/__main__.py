@@ -87,9 +87,15 @@ class FTPFS(Operations):
             perm |= int(file_info['unix.mode'], 8)
 
         ret = {
-            'st_atime': int(convert_time(file_info.get('modify', DEFAULT_DATE))),
-            'st_mtime': int(convert_time(file_info.get('modify', DEFAULT_DATE))),
-            'st_ctime': int(convert_time(file_info.get('create', file_info.get('modify', DEFAULT_DATE)))),
+            'st_atime': int(
+                convert_time(file_info.get('modify', DEFAULT_DATE))),
+            'st_mtime': int(
+                convert_time(file_info.get('modify', DEFAULT_DATE))),
+            'st_ctime': int(
+                convert_time(
+                    file_info.get(
+                        'create',
+                        file_info.get('modify', DEFAULT_DATE)))),
             'st_gid': int(file_info.get('unix.group', '0')),
             'st_uid': int(file_info.get('unix.owner', '0')),
             'st_mode': perm,
