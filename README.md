@@ -12,4 +12,24 @@ Highlights:
   if you provide me with a test FTP server
 - No symlinks support
 
+Installation:
+
+>`pip install ftpfs --user`
+>
+>or
+>
+>```
+>git clone https://github.com/rr-/ftpfs
+>cd ftpfs
+>pip install --user .
+>```
+
+Usage:
+
+>`ftpfs host mountpoint` (will ask for credentials interactively)
+>
+>or
+>
+>`ftpfs host mountpoint --user foo --pass bar`
+
 License - [MIT](LICENSE.md).
