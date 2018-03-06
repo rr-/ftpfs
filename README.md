@@ -32,4 +32,6 @@ Usage:
 >
 >`ftpfs host mountpoint --user foo --pass bar`
 
+If you wish to run it in background, add `--daemon`.
+
 License - [MIT](LICENSE.md).
