@@ -232,7 +232,7 @@ def parse_args():
     parser.add_argument('host')
     parser.add_argument('dest')
     parser.add_argument('--user')
-    parser.add_argument('--pass', dest='password')
+    parser.add_argument('--pass', '--password', dest='password')
     ret = parser.parse_args()
     if not ret.user:
         ret.user = input('User: ')
