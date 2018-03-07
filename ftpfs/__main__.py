@@ -245,9 +245,14 @@ def parse_args():
 
 def main():
     args = parse_args()
+
     ftp = FTP()
     ftp.connect(host=args.host, port=args.port)
     ftp.login(user=args.user, passwd=args.password)
+
+    if not args.daemon:
+        print('Connected')
+
     FUSE(FTPFS(ftp), args.dest, nothreads=True, foreground=not args.daemon)
 
 
