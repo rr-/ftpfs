@@ -81,7 +81,14 @@ class FTPFS(Operations):
             except KeyError:
                 raise FuseOSError(errno.ENOENT)
 
-        perm = convert_perm(file_info['perm'])
+        perm = 0
+        if 'type' in file_info:
+            if file_info['type'] in {'cdir', 'dir'}:
+                perm |= stat.S_IFDIR
+            elif file_info['type'] == 'file':
+                perm |= stat.S_IFREG
+        elif 'perm' in file_info:
+            perm = convert_perm(file_info['perm'])
         if 'unix.mode' in file_info:
             perm &= ~0o777
             perm |= int(file_info['unix.mode'], 8)
