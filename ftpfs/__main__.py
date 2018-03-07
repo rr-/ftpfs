@@ -233,6 +233,7 @@ def parse_args():
     parser.add_argument('dest')
     parser.add_argument('--user')
     parser.add_argument('--pass', '--password', dest='password')
+    parser.add_argument('--port', type=int, default=21)
     parser.add_argument('-d', '--daemon', action='store_true')
     ret = parser.parse_args()
     if not ret.user:
@@ -244,7 +245,9 @@ def parse_args():
 
 def main():
     args = parse_args()
-    ftp = FTP(host=args.host, user=args.user, passwd=args.password)
+    ftp = FTP()
+    ftp.connect(host=args.host, port=args.port)
+    ftp.login(user=args.user, passwd=args.password)
     FUSE(FTPFS(ftp), args.dest, nothreads=True, foreground=not args.daemon)
 
 
